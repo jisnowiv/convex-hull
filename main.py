@@ -40,19 +40,11 @@ def ccw(a, b, c):
         return TURN_RIGHT
 
 
-def distance_to_point():
-    return 0
-
 class Hull:
     def __init__(self):
         self.points = []
         self.num = 0
         self.hull = []
-
-    def draw_hull(self):
-        if len(self.hull) == 0:
-            return
-        #   else organize hull in counter clockwise order and connect the dots
 
     def print_points(self):
         if len(self.points) == 0:
@@ -137,48 +129,6 @@ class Hull:
                 debug_print(self.hull[-1])
                 self.hull.pop(-2)
 
-    """def quick_hull(self):
-        debug_print("QuickHull:")
-        if len(self.points) < 3:
-            print("There must be at least 3 points")
-            return
-
-        # sort the points by x coordinate
-        self.points = utility.merge_sort(self.points, 0)
-        debug_print(self.points)
-
-        left = self.points[0]
-        debug_print("--Leftmost point: {}".format(left))
-        right = self.points[-1]
-        debug_print("--Rightmost point: {}".format(right))
-
-        # find all points to the right and left of the midline (ignore any on the line)
-        right_side = []
-        left_side = []
-
-        for i in range(1, len(self.points) - 1):
-            res = ccw(left, right, self.points[i])
-
-            if res == TURN_LEFT:
-                left_side.append(self.points[i])
-            elif res == TURN_RIGHT:
-                right_side.append(self.points[i])
-
-        self.FindHull(right_side, left, right)
-        self.FindHull(left_side, right, left)
-
-    def FindHull(self, sub_points, left, right):
-        debug_print("--FindHull")
-        debug_print("----Line goes from {} to {}".format(left, right))
-        debug_print("----Sub Points contains {}".format(sub_points))
-
-        if len(sub_points) == 0:
-            return
-
-        far = sub_points[0]
-
-        for p in sub_points:"""
-
     def gift_wrap(self):
         if len(self.points) < 3:
             print("There must be at least 3 points")
@@ -254,17 +204,13 @@ if __name__ == "__main__":
     ch.print_points()
     ch.print_hull()
 
-    choice = input('How would you like to compute the convex hull?\n\t(1) Gift Wrap\n\t(2) Graham Scan\n\t(3) Quick '
-                   'Hull\n')
+    choice = input('How would you like to compute the convex hull?\n\t(1) Gift Wrap\n\t(2) Graham Scan\n')
 
     if choice == '1':
         ch.gift_wrap()
         ch.print_hull()
     elif choice == '2':
         ch.graham_scan()
-        ch.print_hull()
-    elif choice == '3':
-        ch.quick_hull()
         ch.print_hull()
     else:
         print("Invalid choice, exiting now.")
